@@ -1,0 +1,114 @@
+#+TITLE: Hugo Flavored Markdown exporter for Org Mode
+#+DATE: <2016-07-15 Fri>
+#+AUTHOR: Helloyi He
+#+LANGUAGE: en
+
+Lovely you:
+
++ Writing with *Org*.
++ Making website with *Hugo*.
+
+Yean! *ox-hugo*
+
+* Installation
+1. Manual
+
+Download:
+#+BEGIN_SRC shell
+$ git clone https://github.com/helloyi/ox-hugo /your/ox-hugo/path
+#+END_SRC
+
+Config emacs:
+#+BEGIN_SRC lisp
+(add-to-list 'load-path (expand-file-name "/your/ox-hugo/path"))
+(require 'ox-hugo)
+#+END_SRC
+
+2. Automatic
+
+#+BEGIN_SRC shell
+$ git clone https://github.com/helloyi/ox-hugo /your/ox-hugo/path
+$ mv /your/ox-hugo/path/ox-hugo.el /to/your/org/lisp/dir
+#+END_SRC
+
+* Export options
+
+First, setting hugo metadata format with ~#+HUGO_METADATA_FORMAT~ (default ~toml~).
+This keyword can be set to either ~toml~ or ~yaml~.
+
+Supported keywords:
+
+| org keyword            | hugo metadata | default       |
+|------------------------+---------------+---------------|
+| #+TITLE                | title         | <filename>    |
+| #+DATE                 | date          | <export time> |
+| #+HUGO_DESCRIPTION     | description   | <nil>         |
+| #+HUGO_TAGS            | tags          | <nil>         |
+| #+HUGO_CATEGORIES      | categories    | <nil>         |
+| #+HUGO_SLUG            | slug          | <nil>         |
+| #+HUGO_URL             | url           | <nil>         |
+| #+HUGO_METADATA_FORMAT |               | "toml"        |
+
+* Example
+
++ Default metadata export
+
+org source:
+
+#+BEGIN_SRC org
+#+HUGO_CATEGORIES: test
+#+END_SRC
+
+markdown source:
+
+#+BEGIN_SRC markdown
++++
+title = "filename"
+date = "2016-07-16 22:44:35 +0800"
+categories = ["test"]
++++
+#+END_SRC
+
++ Metadata export
+
+org source:
+
+#+BEGIN_SRC org
+#+TITLE: test
+#+DATE: <2015-07-05 21:30 +0800>
+#+HUGO_TAGS: test tag1 tag2
+#+HUGO_CATEGORIES: test
+#+HUGO_DESCRIPTION: Just test
+#+END_SRC
+
+markdown source:
+
+#+BEGIN_SRC markdown
++++
+title = "test"
+date = "2015-07-05 21:30:00 +0800"
+description = "Just test"
+tags = ["test", "tag1", "tag2"]
+categories = ["test"]
++++
+#+END_SRC
+
++ Source Block export
+
+org source:
+
+#+BEGIN_EXAMPLE
+#+BEGIN_SRC go
+var a string
+var b int64
+#+END_SRC
+#+END_EXAMPLE
+
+markdown source:
+
+#+BEGIN_SRC markdown
+{{< highlight go >}}
+var a string
+var b int64
+{{< /highlight >}}
+#+END_SRC
