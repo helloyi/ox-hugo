@@ -97,12 +97,12 @@ categories = ["test"]
 
 org source:
 
-#+BEGIN_QUOTE
-\#+BEGIN_SRC go
+#+BEGIN_VERSE
+#+BEGIN_SRC go
 var a string
 var b int64
-\#+END_SRC
-#+END_QUOTE
+#+END_SRC
+#+END_VERSE
 
 markdown source:
 
