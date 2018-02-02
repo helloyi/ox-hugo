@@ -3,6 +3,8 @@
 #+AUTHOR: Helloyi He
 #+LANGUAGE: en
 
+*This project has been deprecated, please use [[https://github.com/kaushalmodi/ox-hugo/][ox-hugo]]*
+
 Lovely you:
 
 + Writing with *Org*.
